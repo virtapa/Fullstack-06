@@ -1,3 +1,5 @@
+let notifTimer = null
+
 const notificationReducer = (state = null, action) => {
   switch (action.type) {
     case 'SET_MESSAGE':
@@ -9,15 +11,18 @@ const notificationReducer = (state = null, action) => {
   }
 }
 
-export const setNotification = (content, time) => {
+export const setNotification = (content, sec) => {
+  if (notifTimer != null) {
+    clearInterval()
+  }
   return async (dispatch) => {
     dispatch({
       type: 'SET_MESSAGE',
       message: content,
     })
-    setTimeout(() => {
+    notifTimer = setTimeout(() => {
       dispatch(removeNotification())
-    }, time * 1000)
+    }, sec * 1000)
   }
 }
 
