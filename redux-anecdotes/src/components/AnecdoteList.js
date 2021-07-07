@@ -1,19 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { incrementVote } from '../reducers/anecdoteReducer'
-import {
-  setNotification,
-} from '../reducers/notificationReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
   const anecdotes = useSelector((state) => {
     if (state.filter.filter === '') return state.anecdotes
 
-    return state.anecdotes
-    .filter((anecdote) =>
+    return state.anecdotes.filter((anecdote) =>
       anecdote.content
         .toLowerCase()
-        .includes(state.filter.filter.toLowerCase())
+        .includes(state.filter.filter.toLowerCase()),
     )
   })
   const dispatch = useDispatch()

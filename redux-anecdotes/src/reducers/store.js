@@ -8,14 +8,9 @@ import notificationReducer from './notificationReducer'
 const reducer = combineReducers({
   anecdotes: anecdoteReducer,
   notification: notificationReducer,
-  filter: filterReducer
+  filter: filterReducer,
 })
 
-const store = createStore(
-    reducer,
-    composeWithDevTools(
-      applyMiddleware(thunk)
-    )
-  )
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store
